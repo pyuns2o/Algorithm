@@ -1,19 +1,19 @@
-# 25757 임스와 함께하는 미니게임
+# 코드 간결화
+import sys
 
-n, game = input().split()
+n, game = sys.stdin.readline().split()
 n = int(n)
 
-user_list = []
+# 처음부터 set으로 저장
+user_set = {sys.stdin.readline().strip() for _ in range(n)}
 
-for _ in range(n):
-    user = input()
-    user_list.append(user)
+# 집합 크기
+uniq_count = len(user_set)
 
-uniq_user = list(set(user_list))
-
+# 게임 종류에 따라 출력
 if game == 'Y':
-    print(len(uniq_user))
+    print(uniq_count)
 elif game == 'F':
-    print(len(uniq_user)//2)
+    print(uniq_count // 2)
 elif game == 'O':
-    print(len(uniq_user)//3)
+    print(uniq_count // 3)
