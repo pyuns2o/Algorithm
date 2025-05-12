@@ -9,8 +9,8 @@ with july_order as
 (
     select j.flavor
         , (july_cnt + total_order) as total_cnt
-    from july_order as j
-    join first_half as f on j.flavor = f.flavor
+    from first_half as f
+    left join july_order as j on j.flavor = f.flavor
     group by 1
 )
 , rnk as
