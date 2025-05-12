@@ -13,7 +13,7 @@ with base as
 )
 , nov_list as
 (
-    select distinct car_id
+    select car_id
     from CAR_RENTAL_COMPANY_RENTAL_HISTORY
     where 1=1
         and start_date <= '2022-11-30'
