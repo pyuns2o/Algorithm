@@ -45,5 +45,3 @@ def solution(rectangle, characterX, characterY, itemX, itemY):
                 if not visited[nx][ny] and board[nx][ny] == 1:
                     visited[nx][ny] = True
                     q.append((nx, ny, dist + 1))
-    answer = 0
-    return answer
