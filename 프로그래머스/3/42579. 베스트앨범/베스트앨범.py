@@ -1,18 +1,20 @@
 from collections import defaultdict
 
 def solution(genres, plays):
-    genre_total = defaultdict(int)
-    for g, p in zip(genres, plays):
-        genre_total[g] += p
-    
-    songs = [(i,g,p) for i, (g,p) in enumerate(zip(genres, plays))]
-    
-    songs.sort(key=lambda x: (-genre_total[x[1]], -x[2], x[0]))
-    
     answer = []
-    genre_count = defaultdict(int)
-    for i,g, _ in songs:
-        if genre_count[g] < 2:
-            answer.append(i)
-            genre_count[g] += 1
+    total = defaultdict(int)
+    music = defaultdict(list)
+    for i, gen in enumerate(genres):
+        total[gen] += plays[i]
+        music[gen].append((plays[i], i))
+        
+    genres_sorted = sorted(total.keys(), key=lambda g: total[g], reverse=True)
+    
+    for gen in genres_sorted:
+        # 재생 수 내림차순
+        # 고유변호 오름차순
+        music[gen].sort(key=lambda x : (-x[0], x[1]))
+        
+        for play, idx in music[gen][:2]:
+            answer.append(idx)
     return answer
